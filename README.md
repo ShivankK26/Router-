@@ -1,20 +1,20 @@
-**<h1>Router Pay Streaming Documentation</h1>**
+# Router Pay Streaming Documentation
 
-**<h2>About this project</h2>**
+## About the Project
 
-Router Pay Streaming is an application designed to provide a convenient way for employees to receive their salaries. Instead of waiting until the end of the month to receive their entire month's salary, employees can now collect or receive their accumulated earnings at any time, on any chain, using Router Pay Streaming.
+Router PayStream is a DApp to provide a Convenient Way for Employees to Receive their Salaries. Instead of Waiting until end of the Month to Receive their Salary, Employees can now Receive their Salary anytime, on any Chain, using Router PayStream.
 
-**<h2>Description</h2>**
+## Description
 
-The Router Pay Cosmwasm smart contract handles the following functionalities:
+The Router PayStream Cosmwasm Smart Contract handles the following functionalities -
 
-- Employees Salary Information: The smart contract maintains information about each employee's salary.
-- Employee-wise current withdrawal available limit and ownership information: The contract keeps track of the withdrawal limit for each employee and their ownership information.
-- Access-control of salary withdrawal from multi-chain accounts: The smart contract ensures that only authorized accounts can initiate salary withdrawals.
-- Employer Account Information and access control: The contract stores information about the employer's account, including setting salaries, fees (if required), and on-hold amounts.
-- All Salaries paid in the form of the router chain’s native coin (route token): The native coin of the router chain is used to pay salaries.
-- Funds maintained on the smart contract: The employer maintains funds on the smart contract present on the router chain.
-- All salary-related information and calculation performed on the router chain: All necessary salary calculations and information are processed on the router chain.
-- Cross-chain token transfers using the router chain native coin bridge: All cross-chain token transfers are done through the router chain native coin bridge.
+- **Employees Salary Information:** The Smart Contract Maintains Information about each Employee's Salary.
+- **Employee-wise Current Withdrawal available Limit and Ownership Information:** The Contract keeps Track of the Withdrawal Limit for each Employee and their Ownership Information.
+- **Access-control of Salary Withdrawal from Multi-chain Accounts:** The Smart Contract ensures that only Authorized Accounts can initiate Salary Withdrawals.
+- **Employer Account Information and Access Control:** The Contract Stores Information about the Employer's Account, including Setting Salaries, fees (if required), and on-hold Amounts.
+- **All Salaries Paid in the form of ROUTE Tokens:** ROUTE Token is used to Pay Salaries.
+- **Funds Maintained on the Smart Contract:** The Employer Maintains funds on the Smart Contract present on the Router Chain.
+- **All Salary-related Information and Calculation Performed on the Router Chain:** All necessary Salary Calculations and Information are processed on the Router Chain.
+- **Cross-chain Token Transfers Using the Router Chain Native Coin Bridge**: All Cross-chain Token Transfers are Done through the Router Chain Native Coin Bridge.
 
-The payment to the user will be made on a per-second basis. The payer will create a pay stream for the payee, providing the required information. The stream will start from a specific time, and the payee will be able to withdraw accumulated route tokens until that point. Additionally, the payee can receive route tokens on any chain and withdraw them from any supported chain.
+The Payment to the User will be made on a per-second Basis. The Payer will Create a PayStream for the Payee, Providing the required Information. The Stream will Start from a Specific Time, and the Payee will be able to Withdraw accumulated ROUTE Tokens until that Point. Additionally, the Payee can Receive ROUTE Tokens on any Chain and Withdraw them from any Supported Chain.
