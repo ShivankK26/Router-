@@ -1,55 +1,24 @@
-<h1>Cosmwasm Contracts</h1>
+# Router Pay Streaming Contract
 
-**<h2>Router Pay Streaming Contract</h2>**
+The Router PayStream Contract is a Smart Contract that facilitates Salary Streaming between a Payer and a Payee. It enables the Creation, Management, and Withdrawal of Salary Streams across Different Chains.
 
-The Router Pay Streaming contract is a smart contract that facilitates salary streaming between a payer and a payee. It enables the creation, management, and withdrawal of salary streams across different chains.
+This Documentation Provides a Guide for Developers to Understand and Interact with the Router PayStream Contract. It Covers the Contract's Message Signatures, Deployment Process, and Usage Instructions.
 
-This documentation provides a guide for developers to understand and interact with the Router Pay Streaming contract. It covers the contract's message signatures, deployment process, and usage instructions.
+## Execute Messages
 
-**<h2>Deployment Process</h2>**
+The Router PayStream Contract Supports various Messages for Different Operations. Each Message has a Specific Structure that Developers need to follow when Interacting with the Contract.
 
-Regardless of the deployment option you choose, you can now proceed to interact with the Router Pay Streaming contract by executing messages or querying its state.
+### CreateStream
 
-**<h3>Option 1: Deploying Locally</h3>**
+The `CreateStream` function allows the Payer to Create a Salary Stream for a Payee with or without Specifying a reason. The Parameters for this function are -
 
-To deploy the Router Pay Streaming contract locally, follow these steps:
+- **whitelisted_addresses**: `Option<Vec<(String,String)>>` Addresses of Chains where the Payee can Withdraw funds.
+- **start_time**: `u64` The Start time of the Stream.
+- **pay_per_month**: `Uint128` The Payment amount per month, internally we Convert it in `pay_per_sec`.
+- **recipient**: `String` Owner of Stream who can do Whitelist Address or Blacklist.
+- **remarks**: `Option<String>` Creator can set remarks if any for Stream, e.g for what reason Stream is created.
 
-- Run **`yarn deploy:routerchain`** to deploy the contract on the router chain. This command will deploy the contract and save the deployment information in the **`deployment/deployment.json`** file. The contract will be initialized with default values, where the owner will be set to the deployer's address.
-
-* Import the contract on the router station using the contract address from the **`deployment/deployment.json`** file. This will allow you to execute and query the contract directly on the router station.
-
-**<h3>Option 2: Manual Deployment</h3>**
-If you prefer to manually deploy the contract, follow these steps:
-
-- Build the contract by running sh shell/build.sh. This will generate a .wasm file in the artifacts directory.
-- Deploy the generated .wasm file on the router station using the provided code. Take note of the code_id assigned to the deployed contract.
-- Initialize the contract by passing the initial message as follows:
-
-  ```json
-  {
-    "owner": "router1...",
-    "relayer_fee": "1000000000",
-    "dst_gas_limit": 500000,
-    "ack_gas_limit": 500000
-  }
-  ```
-
-* The contract is now deployed and initialized on the router station, ready for execution and querying.
-
-**<h2>Execute Messages</h2>**
-The Router Pay Streaming contract supports various messages for different operations. Each message has a specific structure that developers need to follow when interacting with the contract.
-
-**<h3>CreateStream</h3>**
-
-The **\`CreateStream\`** function allows the payer to create a salary stream for a payee with or without specifying a reason. The parameters for this function are:
-
-- **whitelisted_addresses**: `Option<Vec<(String,String)>>` Addresses of chains where the payee can withdraw funds.
-- **start_time**: `u64` The start time of the stream.
-- **pay_per_month**: `Uint128` The payment amount per month, internally we convert it in pay_per_sec
-- **recipient**: `String` Owner of stream who can do whitelist address or blacklist
-- **remarks**: `Option<String>` Creator can set remarks if any for stream, e.g for what reason stream is created
-
-_CreateStream Message Structure_ :
+_CreateStream Message Structure_:
 
 ```json
 {
@@ -72,14 +41,14 @@ _CreateStream Message Structure_ :
 }
 ```
 
-**<h3>CancelStream</h3>**
+### CancelStream
 
-The **\`CancelStream\`** function allows the payer to cancel a salary stream at any time. When a stream is canceled, any remaining route tokens are transferred to the payee's owner address, and the stream is closed. The parameters for this function are:
+The `CancelStream` function allows the Payer to Cancel a Salary Stream at anytime. When a Stream is Canceled, any remaining ROUTE Tokens are transferred to the Payee's Owner Address, and the Stream is Closed. The Parameters for this function are -
 
-- stream_id: `u64` The ID of the stream to be canceled.
-- remarks: `Option<String>` Payer can pass reason for cancelling
+- **stream_id**: `u64` The ID of the Stream to be Canceled.
+- **remarks**: `Option<String>` Payer can Pass reason for Cancelling.
 
-_CancelStream Message Structure_ :
+_CancelStream Message Structure_:
 
 ```json
 {
@@ -90,11 +59,11 @@ _CancelStream Message Structure_ :
 }
 ```
 
-**<h3>DepositRoute</h3>**
+### DepositRoute
 
-The **\`DepositRoute function\`** enables any user to deposit route tokens into the smart contract. This function is used to add funds to the contract for salary payments.
+The `DepositRoute function` enables any User to Deposit ROUTE Tokens into the Smart Contract. This function is used to add funds to the Contract for Salary Payments.
 
-_DepositRoute Message Structure_ :
+_DepositRoute Message Structure_:
 
 ```json
 {
@@ -102,7 +71,7 @@ _DepositRoute Message Structure_ :
 }
 ```
 
-**<h3>WithdrawSalary</h3>**
+### WithdrawSalary
 
 The **\`WithdrawSalary\`** function allows the payee to initiate a withdrawal from the salary stream on the router chain or on other chain. The parameters for this function are:
 
@@ -124,7 +93,7 @@ _WithdrawSalary Message Structure_ :
 }
 ```
 
-**<h3>EnrollRemoteContract</h3>**
+### EnrollRemoteContract
 
 The **\`EnrollRemoteContract\`** function allows the payee to initiate a withdrawal from the salary stream on the router chain or on other chain. The parameters for this function are:
 
@@ -142,7 +111,7 @@ _EnrollRemoteContract Message Structure_ :
 }
 ```
 
-**<h3>MapChainType</h3>**
+### MapChainType
 
 The **\`MapChainType\`** function allows the contract owner to map chain type. The parameters for this function are:
 
@@ -160,7 +129,7 @@ _MapChainType Message Structure_ :
 }
 ```
 
-**<h3>WithdrawFunds</h3>**
+### WithdrawFunds
 
 The **\`WithdrawFunds\`** function allows the owner to withdraw funds from the contract. The parameters for this function are:
 
@@ -178,7 +147,7 @@ _WithdrawFunds Message Structure_ :
 }
 ```
 
-**<h3>UpdateWhiteListAddress</h3>**
+### UpdateWhiteListAddress
 
 The **\`UpdateWhiteListAddress\`** function allows the stream owner to whitelist or blacklist a address for their stream. The parameters for this function are:
 
@@ -200,7 +169,7 @@ _UpdateWhiteListAddress Message Structure_ :
 }
 ```
 
-**<h3>UpdateCrossChainMetadata</h3>**
+### UpdateCrossChainMetadata
 
 The **\`UpdateCrossChainMetadata\`** function allows the ownwer of contract to update metadata such as ack_gas_limit or dst_gas_limit or relayer_fee. The parameters for this function are:
 
@@ -220,9 +189,9 @@ _UpdateCrossChainMetadata Message Structure_ :
 }
 ```
 
-**<h2>Query Messages</h2>**
+## Query Messages
 
-**<h3>GetContractVersion</h3>**
+### GetContractVersion
 
 The **\`GetContractVersion\`** function Fetches the contract version.
 
@@ -234,7 +203,7 @@ _GetContractVersion Message Structure_ :
 }
 ```
 
-**<h3>GetRemoteContract</h3>**
+### GetRemoteContract
 
 The **\`GetRemoteContract\`** function Fetches the contract address of provided chainid. The parameters for this function is:
 
@@ -250,7 +219,7 @@ _GetRemoteContract Message Structure_ :
 }
 ```
 
-**<h3>GetRouterPayMetadata</h3>**
+### GetRouterPayMetadata
 
 The **\`GetRouterPayMetadata\`** function Fetches the metadat mapped to provided stream id. The parameters for this function is:
 
@@ -266,7 +235,7 @@ _GetRouterPayMetadata Message Structure_ :
 }
 ```
 
-**<h3>GetOwner</h3>**
+### GetOwner
 
 The **\`GetOwner\`** function Fetches the contract owner.
 
@@ -278,7 +247,7 @@ _GetOwner Message Structure_ :
 }
 ```
 
-**<h3>GetCrossChainMetadata</h3>**
+### GetCrossChainMetadata
 
 The **\`GetCrossChainMetadata\`** function fetches the crosschain metadata contains dst_gas_limit,ack_gas_limit and relayer_fee.
 
@@ -290,7 +259,7 @@ _GetCrossChainMetadata Message Structure_ :
 }
 ```
 
-**<h3>GetStreams</h3>**
+### GetStreams
 
 The **\`GetStreams\`** function fetches stream metadata for the range provided. The parameters for this function are:
 
@@ -308,7 +277,7 @@ _GetStreams Message Structure_ :
 }
 ```
 
-**<h3>GetStreamWhiteListAddress</h3>**
+### GetStreamWhiteListAddress
 
 The **\`GetStreamWhiteListAddress\`** function fetches all whitelist address provided stream id, returns `Vec<(String,String)>`. The parameters for this function is:
 
@@ -324,7 +293,7 @@ _GetStreamWhiteListAddress Message Structure_ :
 }
 ```
 
-**<h3>GetUserStreamIds</h3>**
+### GetUserStreamIds
 
 The **\`GetUserStreamIds\`** function fetches all stream ids associated with a specific router address. The parameters for this function is:
 
@@ -340,7 +309,7 @@ _GetUserStreamIds Message Structure_ :
 }
 ```
 
-**<h3>GetUserStreamsInfo</h3>**
+### GetUserStreamsInfo
 
 The **\`GetUserStreamsInfo\`** function fetches detailed information about the streams associated with a specific address. The parameters for this function is:
 
@@ -356,7 +325,7 @@ _GetUserStreamsInfo Message Structure_ :
 }
 ```
 
-**<h3>IsWhiteListed</h3>**
+### IsWhiteListed
 
 The **\`IsWhiteListed\`** function checks if a specific address is whitelisted for a particular stream on a specific chain. The parameters for this function are:
 
@@ -376,7 +345,7 @@ _IsWhiteListed Message Structure_ :
 }
 ```
 
-**<h3>GetAccumulatedAmount</h3>**
+### GetAccumulatedAmount
 
 The **\`GetAccumulatedAmount\`** function fetches the accumulated amount for a specific stream. The parameters for this function is:
 
