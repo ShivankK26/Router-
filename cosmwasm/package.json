@@ -1,0 +1,19 @@
+{
+  "name": "cosmwasm",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Priyanshu Mishra",
+  "license": "MIT",
+  "scripts": {
+    "deploy:routerchain": "sh ./shell/build.sh && ts-node ./scripts/deploy.ts",
+    "build": "sh ./shell/build.sh"
+  },
+  "dependencies": {
+    "@routerprotocol/router-chain-sdk-ts": "^0.8.44",
+    "dotenv": "^16.1.4",
+    "fs-extra": "^11.1.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.1"
+  }
+}

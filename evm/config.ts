@@ -1,0 +1,2 @@
+export const routerPayContractAddressOnRouterChain =
+  'router1kqd67scg0ua28yp2elsak085cuqhmz092mehv0azewv7sehcsffstzhhxq';
